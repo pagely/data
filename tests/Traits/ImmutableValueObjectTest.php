@@ -2,7 +2,9 @@
 
 namespace EquipTests\Data\Traits;
 
-class ImmutableValueObjectTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class ImmutableValueObjectTest extends TestCase
 {
     public function testConstruction()
     {
@@ -60,12 +62,10 @@ class ImmutableValueObjectTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($data, $object->toArray());
     }
 
-    /**
-     * @expectedException \DomainException
-     * @expectedExceptionMessageRegExp /expected value of .* to be an object of .* type/i
-     */
-    public function testConstructionWithExpectationFaiure()
+    public function testConstructionWithExpectationFailure()
     {
+        $this->expectException(\DomainException::class);
+        $this->expectExceptionMessageRegExp('/expected value of .* to be an object of .* type/i');
         $data = [
             'created_at' => new \stdClass,
         ];
@@ -73,33 +73,27 @@ class ImmutableValueObjectTest extends \PHPUnit_Framework_TestCase
         $object = new ImmutableValueObject($data);
     }
 
-    /**
-     * @expectedException \DomainException
-     * @expectedExceptionMessageRegExp /requires a name/i
-     */
     public function testValidateThrowsException()
     {
+        $this->expectException(\DomainException::class);
+        $this->expectExceptionMessageRegExp('/requires a name/i');
         $object = new ImmutableValueObject([
             'id' => 5,
         ]);
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessageRegExp /modification of immutable object .* not allowed/i
-     */
     public function testSetThrowsException()
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessageRegExp('/modification of immutable object .* not allowed/i');
         $object = new ImmutableValueObject;
         $object->name = 'Cheery Charlie';
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessageRegExp /modification of immutable object .* not allowed/i
-     */
     public function testUnsetThrowsException()
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessageRegExp('/modification of immutable object .* not allowed/i');
         $object = new ImmutableValueObject;
         unset($object->name);
     }

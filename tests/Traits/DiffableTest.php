@@ -2,9 +2,11 @@
 
 namespace EquipTests\Data\Traits;
 
-class DiffableTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class DiffableTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->object = new Diffable;
         $this->object->id = 42;

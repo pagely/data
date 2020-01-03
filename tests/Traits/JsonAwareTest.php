@@ -2,7 +2,9 @@
 
 namespace EquipTests\Data\Traits;
 
-class JsonAwareTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class JsonAwareTest extends TestCase
 {
     public function testJson()
     {
@@ -11,10 +13,7 @@ class JsonAwareTest extends \PHPUnit_Framework_TestCase
         $object->id = 1;
         $object->name = 'Test Case';
 
-        $json = json_encode($object);
-
-        $this->assertJson($json, $object);
-
+        $json = json_encode($object,  JSON_THROW_ON_ERROR);
         $data = json_decode($json, true);
 
         $this->assertArrayHasKey('id', $data);

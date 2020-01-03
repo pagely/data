@@ -2,7 +2,9 @@
 
 namespace EquipTests\Data\Traits;
 
-class SerializeAwareTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class SerializeAwareTest extends TestCase
 {
     public function testSerialize()
     {
@@ -13,7 +15,7 @@ class SerializeAwareTest extends \PHPUnit_Framework_TestCase
 
         $frozen = serialize($object);
 
-        $this->assertInternalType('string', $frozen);
+        $this->assertIsString($frozen);
 
         $thawed = unserialize($frozen);
 

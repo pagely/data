@@ -2,7 +2,9 @@
 
 namespace EquipTests\Data;
 
-class EntityTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class EntityTest extends TestCase
 {
     /**
      * @var array
@@ -14,7 +16,7 @@ class EntityTest extends \PHPUnit_Framework_TestCase
      */
     protected $entity;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->data = [
             'id'         => 42,
@@ -55,7 +57,7 @@ class EntityTest extends \PHPUnit_Framework_TestCase
     {
         $frozen = serialize($this->entity);
 
-        $this->assertInternalType('string', $frozen);
+        $this->assertIsString($frozen);
 
         $thawed = unserialize($frozen);
 
