@@ -1,5 +1,5 @@
 {
-    "name": "equip/data",
+    "name": "pagely/equip-data",
     "description": "Interfaces and traits for creating a data layer",
     "type": "library",
     "license": "MIT",
@@ -7,10 +7,15 @@
         {
             "name": "Equip Contributors",
             "homepage": "https://github.com/equip"
+        },
+        {
+            "name": "Pagely",
+            "homepage": "https://github.com/pagely"
         }
     ],
     "replace": {
-        "sparkphp/data": "self.version"
+        "sparkphp/data": "self.version",
+        "equip/data": "2.4.0"
     },
     "require": {
         "php": ">=7.2",
